@@ -21,7 +21,7 @@ SRCS:=$(filter-out $(FILTER_OUT), $(wildcard $(addsuffix /*.cpp, $(SRC_DIRS))))
 OBJS:=$(addsuffix .o, $(basename $(SRCS)))
 DEPS:=$(addsuffix .d, $(basename $(SRCS)))
 
-.PHONY: all run clean
+.PHONY: all run clean compile_flags clean_compile_flags
 
 all:
 	cd $(FIDES_ROOT_DIR)/$(FIDES_LIB_DIR) && $(MAKE) static
@@ -40,7 +40,14 @@ clean:
 %.d: %.cpp
 	$(CXX) $(CXXFLAGS) -MP -MM -MF $@ -MT '$@ $(addsuffix .o, $(basename $<))' $<
 
-ifneq ($(MAKECMDGOALS),clean)
+# for clangd
+compile_flags:
+	echo $(CXXFLAGS) | tr ' ' '\n' > compile_flags.txt
+
+clean_compile_flags:
+	rm -f compile_flags.txt
+
+ifeq (, $(filter $(MAKECMDGOALS), clean compile_flags clean_compile_flags))
 -include $(DEPS)
 endif
 

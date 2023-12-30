@@ -6,7 +6,7 @@ INSTALL_TOP:=/usr/local
 INSTALL_INC:=$(INSTALL_TOP)/include/$(FIDES)
 INSTALL_LIB:=$(INSTALL_TOP)/lib
 
-.PHONY: all, static, shared, samples, exception_install, exception_uninstall, install_static, install_shared, install, uninstall, clean
+.PHONY: all, static, shared, samples, exception_install, exception_uninstall, install_static, install_shared, install, uninstall, clean, compile_flags, clean_compile_flags
 
 # Any of the following make rules can be executed with the `-j` option (`make -j`) for parallel compilation 
 
@@ -50,3 +50,11 @@ uninstall: exception_uninstall
 clean:
 	cd $(FIDES_LIB_DIR) && $(MAKE) $@
 	cd $(FIDES_BIN_DIR) && $(MAKE) $@
+
+compile_flags:
+	cd $(FIDES_LIB_DIR) && $(MAKE) compile_flags
+	cd $(FIDES_BIN_DIR) && $(MAKE) compile_flags
+
+clean_compile_flags:
+	cd $(FIDES_LIB_DIR) && $(MAKE) clean_compile_flags
+	cd $(FIDES_BIN_DIR) && $(MAKE) clean_compile_flags

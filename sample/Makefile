@@ -5,7 +5,7 @@ include $(READER_ROOT_DIR)/common.mk
 # http://stackoverflow.com/a/11206700
 
 SUBDIRS:=$(wildcard */.)
-TARGETS:=all clean  # must not contain '/'
+TARGETS:=all clean compile_flags clean_compile_flags # must not contain '/'
 
 SUBDIRS_TARGETS:=$(foreach t,$(TARGETS),$(addsuffix $t,$(SUBDIRS)))
 
