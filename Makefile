@@ -52,9 +52,9 @@ clean:
 	cd $(FIDES_BIN_DIR) && $(MAKE) $@
 
 compile_flags:
-	cd $(FIDES_LIB_DIR) && $(MAKE) compile_flags
-	cd $(FIDES_BIN_DIR) && $(MAKE) compile_flags
+	cd $(FIDES_LIB_DIR) && $(MAKE) $@
+	cd $(FIDES_BIN_DIR) && $(MAKE) $@
 
 clean_compile_flags:
-	cd $(FIDES_LIB_DIR) && $(MAKE) clean_compile_flags
-	cd $(FIDES_BIN_DIR) && $(MAKE) clean_compile_flags
+	cd $(FIDES_LIB_DIR) && $(MAKE) $@
+	cd $(FIDES_BIN_DIR) && $(MAKE) $@
